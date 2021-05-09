@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your Blog model here.
 class Blog(models.Model):
     title=models.CharField(max_length=255)
     pubDate=models.DateTimeField(auto_now_add=True)
@@ -11,3 +10,10 @@ class Blog(models.Model):
 #create a migration
 #migrate
 #add to the admin
+    def __str__(self):
+        return self.title
+    def summary(self):
+        return self.body[:100]
+
+    def pretty_date(self):
+        return self.pubDate.strftime('%b %e %Y')

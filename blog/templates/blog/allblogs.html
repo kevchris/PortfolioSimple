@@ -1,6 +1,6 @@
 <!doctype html>
-{% load static %}
 <html lang="en">
+{% load static %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,6 @@
     <meta name="generator" content="Hugo 0.82.0">
     <title>Mister.K</title>
 
-    
 
 
 
@@ -57,55 +56,33 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDem">
         <div class="navbar-nav ml-auto">
           <a class="nav-item nav-link active" href="#">Home</a>
-          <a class="nav-item nav-link" href="{% static 'Resume.pdf' %}">Resume</a>
+          <a class="nav-item nav-link" href="#">Resume</a>
           <a class="nav-item nav-link" href="#">Jobs</a>
           <a class="nav-item nav-link" href="#">Projects</a>
-          <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+          <a class="nav-item nav-link active" href="#">Blog</a>
         </div>
       </div>
     </nav>
 </header>
 
-<main>
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi, My name is Kevin Christopher. Welcome to my portfolio website</h1>
-        <p class="lead text-muted">A passionately curious individual who realised the way he could change peoples lives was through the art of code. BioHacking and Bodybuilding are my areas of expertise that I plan to bring the revolutionary technology that is ML and AI.</p>
-        <p>
-          <a href="mailto:kevinchristopher7777@gmail.com" class="btn btn-primary my-2">Email me!</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          {% for job in jobs.all %}
-          <div class="card shadow-sm">
-            <img class="card-img-top" src= "{{job.image.url}} "/>
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">{{jobs.summary}}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
+<main role="main">
+  <div class="container">
+    <h1 class="text-center pt-5"> Welcome to my Blog </h1>
+    <br/>
+    <br/>
+    <h2>Latest Posts</h2>
+    <hr />
   </div>
-
+  <div class="container">
+  {% for blog in blogs.all %}
+  <a href="{% url 'detail' blog.id %}">{{blog.title}}</a>
+  </br>
+  </br>
+  <h7>{{blog.pretty_date}}</h7>
+  <h7>{{blog.summary}}</h7>
+  <img class="card-img-top" src= "{{blog.image.url}}" height=400 width=200 />
+  {% endfor %}
+  </div>
 </main>
 
 <footer class="text-muted py-5">
